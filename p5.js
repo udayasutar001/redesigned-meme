@@ -12,6 +12,7 @@ var recognition = new SpeechRecognition();
 function start() {
     document.getElementById("status").innerHTML = "System is listining, please speak."
     recognition.start();
+  
 }
 
 
@@ -27,6 +28,7 @@ recognition.onresult = function (event) {
         x=Math.floor(Math.random()*900);
         y=Math.floor(Math.random()*600);
         apple_drawn = "set";
+        
       }
       else{
           document.getElementById("status").innerHTML = "The speech has not recognized a number"; 
@@ -37,15 +39,18 @@ recognition.onresult = function (event) {
 function setup() {
     canvas = createCanvas(900, 600);
     canvas.center();
+    
 }
 
 function draw() {
     if (apple_drawn == "set") {
         for (var i = 1; i <= to_number; i++) {
+            x=Math.floor(Math.random()*900);
+        y=Math.floor(Math.random()*600);
             image(apple, x, y, 50, 50);
         }
         document.getElementById("status").innerHTML = "Apple/Apples is drawn.";
-        apple = "";
+        apple_drawn = "";
         speak_data = to_number + "Apples Drawn";
         speak();
         
@@ -65,4 +70,5 @@ function speak() {
 
 function preload() {
     apple = loadImage("apple.png");
+  
 }
